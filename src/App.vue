@@ -1,11 +1,13 @@
 <script setup>
-    import ProductsPage from "./components/pages/ProductsPage.vue";
     import TheHeader from "./layout/TheHeader.vue";
+    import HomePage from "./views/HomePage.vue";
+    import TheFooter from "./layout/TheFooter.vue";
 </script>
 
 <template>
     <TheHeader />
-    <ProductsPage />
+    <RouterView />
+    <TheFooter />
 </template>
 
 <style>
@@ -16,6 +18,7 @@
         padding: 0;
         margin: 0;
         box-sizing: border-box;
+        text-decoration: none;
     }
 
     body {
