@@ -21,8 +21,8 @@
                 </li>
             </ul>
             <div class="registerCart">
-                <a href="#" class="regis"><UserIcon /></a>
-                <a href="#" class="cart"><CartIcon /></a>
+                <RouterLink to="/signin" class="regis"><UserIcon /></RouterLink>
+                <RouterLink to="/signup" class="cart"><CartIcon /></RouterLink>
             </div>
         </nav>
     </header>
@@ -33,6 +33,7 @@
     import CartIcon from "@/assets/icons/CartIcon.vue";
 
     import { reactive } from "vue";
+    import { RouterLink } from "vue-router";
 
     const state = reactive({
         isActive: false,

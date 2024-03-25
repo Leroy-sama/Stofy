@@ -1,6 +1,5 @@
 <script setup>
     import TheHeader from "./layout/TheHeader.vue";
-    import HomePage from "./views/HomePage.vue";
     import TheFooter from "./layout/TheFooter.vue";
 </script>
 

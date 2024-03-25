@@ -28,7 +28,7 @@
 
 <style scoped>
     .products__wrapper {
-        max-width: 1300px;
+        max-width: 1200px;
         margin-inline: auto;
         display: grid;
         grid-template-columns: repeat(3, 1fr);

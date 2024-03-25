@@ -6,6 +6,7 @@
             </div>
             <div class="padding">
                 <div class="product__text">
+                    <RouterLink :to="productDetailsLink">prod</RouterLink>
                     <h3 class="product__title">{{ title }}</h3>
                     <span class="product__price">${{ price }}</span>
                     <p class="product__description">{{ description }}</p>
@@ -19,7 +20,15 @@
 </template>
 
 <script setup>
+    import { computed } from "vue";
+    import { useRoute, RouterLink } from "vue-router";
+
     const props = defineProps(["id", "image", "title", "price", "description"]);
+
+    const productDetailsLink = computed(() => {
+        const route = useRoute();
+        return route.path + "/" + props.id;
+    });
 </script>
 
 <style scoped>
@@ -47,5 +56,18 @@
     .product__price {
         font-family: "Fraunces", serif;
         font-size: 1.2rem;
+    }
+
+    .product__action button {
+        background-color: black;
+        color: white;
+        border: 1px solid black;
+        padding: 0.5em 1em;
+        cursor: pointer;
+    }
+
+    .product__action button:hover {
+        color: black;
+        background-color: white;
     }
 </style>
