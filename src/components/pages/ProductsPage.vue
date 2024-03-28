@@ -28,10 +28,18 @@
 
 <style scoped>
     .products__wrapper {
-        max-width: 1200px;
-        margin-inline: auto;
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
         gap: 2em;
+        margin: 0 1em;
+    }
+
+    @media (min-width: 35em) {
+        .products__wrapper {
+            max-width: 1200px;
+            margin-inline: auto;
+
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2em;
+        }
     }
 </style>

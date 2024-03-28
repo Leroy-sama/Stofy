@@ -9,7 +9,6 @@
                     <RouterLink :to="productDetailsLink">prod</RouterLink>
                     <h3 class="product__title">{{ title }}</h3>
                     <span class="product__price">${{ price }}</span>
-                    <p class="product__description">{{ description }}</p>
                 </div>
                 <div class="product__action">
                     <button>Add to cart</button>
@@ -51,6 +50,7 @@
 
     .product__title {
         color: #163020;
+        padding: 1em 0;
     }
 
     .product__price {
@@ -64,6 +64,7 @@
         border: 1px solid black;
         padding: 0.5em 1em;
         cursor: pointer;
+        margin-top: 1em;
     }
 
     .product__action button:hover {

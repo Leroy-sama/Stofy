@@ -1,5 +1,5 @@
 <template>
-    <section class="details">
+    <section class="details" v-if="selectedProduct">
         <div class="firstSection">
             <div class="image__details">
                 <img :src="image" :alt="title" />
@@ -69,10 +69,13 @@
             </div>
         </div>
     </section>
+    <section v-else>
+        <h1>Loading loading loading....</h1>
+    </section>
 </template>
 
 <script setup>
-    import { onMounted, computed } from "vue";
+    import { onMounted, computed, ref } from "vue";
     import { useStore } from "vuex";
     import { useRoute } from "vue-router";
 
@@ -82,11 +85,7 @@
 
     const id = route.params.id;
 
-    const selectedProduct = computed(() => {
-        return store.getters["prods/products"].find((product) => {
-            product.id === id;
-        });
-    });
+    const selectedProduct = ref(null);
 
     const title = computed(() => {
         return selectedProduct.value.title;
@@ -105,21 +104,22 @@
     });
 
     onMounted(() => {
-        const product = store.getters["prods/products"].find(
-            (product) => product.id === props.id
-        );
-
-        if (product) {
-            selectedProduct.value = product;
-            console.log("product found");
-        } else {
-            console.error(`Product with id ${props.id} not found `);
-        }
-
-        // selectedProduct = store.getters["prods/products"].find(
-        //     (product) => product.id === id
-        // );
+        const products = store.getters["prods/products"];
+        selectedProduct.value = products.find((product) => {
+            product.id === id;
+        });
     });
+
+    // if (product) {
+    //     selectedProduct.value = product;
+    //     console.log("product found");
+    // } else {
+    //     console.error(`Product with id ${props.id} not found `);
+    // }
+
+    // selectedProduct = store.getters["prods/products"].find(
+    //     (product) => product.id === id
+    // );
 </script>
 
 <style scoped>

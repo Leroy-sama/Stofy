@@ -22,7 +22,7 @@
             </ul>
             <div class="registerCart">
                 <RouterLink to="/signin" class="regis"><UserIcon /></RouterLink>
-                <RouterLink to="/signup" class="cart"><CartIcon /></RouterLink>
+                <RouterLink to="#" class="cart"><CartIcon /></RouterLink>
             </div>
         </nav>
     </header>
@@ -61,6 +61,7 @@
         font-size: 2rem;
         cursor: pointer;
         transition: 300ms;
+        color: #163020;
     }
 
     .logo:hover {

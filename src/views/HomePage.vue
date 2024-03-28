@@ -15,6 +15,7 @@
             </div>
         </div>
     </section>
+    <Home />
     <section class="categories">
         <div class="categories__wrapper">
             <div class="head__wrapper">
@@ -96,7 +97,9 @@
     </section>
 </template>
 
-<script setup></script>
+<script setup>
+    import Home from "@/components/carousel/Home.vue";
+</script>
 
 <style scoped>
     .hero__wrapper {
