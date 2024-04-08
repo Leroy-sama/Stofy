@@ -52,15 +52,15 @@
     };
 
     //autoplay
-    const autoplay = () => {
-        setInterval(() => {
-            nextSlide();
-        }, timeoutDuration.value);
-    };
+    // const autoplay = () => {
+    //     setInterval(() => {
+    //         nextSlide();
+    //     }, timeoutDuration.value);
+    // };
 
-    if (autoPlayEnabled.value) {
-        autoplay();
-    }
+    // if (autoPlayEnabled.value) {
+    //     autoplay();
+    // }
 
     onMounted(() => {
         getCountSlide.value = document.querySelectorAll(".slide").length;

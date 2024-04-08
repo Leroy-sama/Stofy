@@ -5,9 +5,11 @@
                 <div v-show="currentSlide === index + 1" class="slide-info">
                     <div class="text-side">
                         <p class="text__desc">{{ slide.text }}</p>
-                        <RouterLink to="/products" class="btn"
-                            >Shop Now</RouterLink
-                        >
+                        <div class="shop-btn">
+                            <RouterLink to="/products" class="btn"
+                                >Shop Now</RouterLink
+                            >
+                        </div>
                     </div>
                     <div class="img-side">
                         <img :src="slide.image" alt="" />
@@ -25,7 +27,7 @@
     const carouselSlides = [
         {
             text: "The most trusted platform to sell and buy locally available productstotam atis vero quisquam? Nihil, dolorem.",
-            image: "https://i.pinimg.com/736x/5f/da/d8/5fdad8c864d866fdaed88442f80af4e1.jpg",
+            image: "https://i.pinimg.com/564x/5d/b6/67/5db6672f6518947556486f3b69b29043.jpg",
         },
         {
             text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur fuga totam harum aliquid adipisci magnam,",
@@ -41,8 +43,8 @@
 <style scoped>
     .img-side img {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
+        /* height: 100%; */
+        /* object-fit: cover; */
     }
 
     .carousel {
@@ -51,11 +53,11 @@
     }
 
     .slide-info {
-        position: absolute;
-        top: 0;
+        /* position: absolute; */
+        /* top: 0;
         left: 0;
         width: 100%;
-        max-height: 100%;
+        max-height: 100%;*/
         height: 100%;
         display: flex;
         flex-direction: column-reverse;
@@ -64,11 +66,12 @@
     }
 
     .text-side {
-        padding: 1em;
+        /* padding: 4em; */
     }
 
     .text__desc {
         font-size: 1.5rem;
+        /* padding: 1em; */
     }
 
     .btn {
@@ -78,6 +81,18 @@
         cursor: pointer;
         padding: 1em 2em;
         font-size: 1rem;
+        /* margin: 4em 0; */
+    }
+
+    .btn:hover {
+        background-color: white;
+        color: #163020;
+    }
+
+    .shop-btn {
+        display: flex;
+        justify-content: center;
+        padding: 2em;
     }
 
     @media (min-width: 35em) {

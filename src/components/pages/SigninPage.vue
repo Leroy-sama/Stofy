@@ -4,22 +4,41 @@
             <div class="formField">
                 <div class="login">
                     <h2 class="signin__head">Sign In</h2>
+                    <p class="sign__text">
+                        Enter your email and password to login to your account
+                    </p>
                     <form class="form2" @submit.prevent="signInToAccount">
-                        <div class="form-control">
+                        <div
+                            class="form-control"
+                            :class="{ invalid: !email.isValid }"
+                        >
+                            <label for="email">Email Address</label>
                             <input
                                 type="email"
                                 id="user_email_signin"
                                 placeholder="Email address"
-                                v-model="email"
+                                v-model.trim="email.val"
+                                @blur="clearValidity(email)"
                             />
+                            <p v-if="!email.isValid" class="err-msg">
+                                Please enter a valid email address
+                            </p>
                         </div>
-                        <div class="form-control">
+                        <div
+                            class="form-control"
+                            :class="{ invalid: !pswd.isValid }"
+                        >
+                            <label for="pswd">Password</label>
                             <input
                                 type="password"
                                 id="user_password_signin"
                                 placeholder="Password"
-                                v-model="pswd"
+                                v-model.trim="pswd.val"
+                                @blur="clearValidity(pswd)"
                             />
+                            <p v-if="!pswd.isValid" class="err-msg">
+                                Please enter a correct password
+                            </p>
                         </div>
                         <button type="submit" class="btn">Sign In</button>
                     </form>
@@ -64,6 +83,10 @@
 
     const formIsValid = ref(true);
 
+    const clearValidity = (input) => {
+        input.isValid = true;
+    };
+
     const validateForm = () => {
         formIsValid.value = true;
         if (email.val === "") {
@@ -78,7 +101,21 @@
     };
 
     const signInToAccount = () => {
-        console.log("signed in");
+        validateForm();
+
+        if (!formIsValid.value) {
+            console.log("form not valid");
+            return;
+        } else {
+            console.log("form Is Valid");
+
+            const formData = {
+                email: email.val,
+                pswd: pswd.val,
+            };
+
+            console.log(formData);
+        }
     };
 </script>
 
@@ -87,8 +124,18 @@
         display: none;
     }
 
+    .err-msg {
+        color: red;
+        padding: 0.5em 0;
+        font-size: 0.8rem;
+    }
+
+    .invalid input {
+        border: 1px solid red;
+    }
+
     .registration {
-        padding: 2em 1em;
+        padding: 2em 0;
     }
 
     .formField-wrapper {
@@ -100,6 +147,11 @@
     .signin__head {
         text-align: center;
         color: #163020;
+    }
+
+    .sign__text {
+        padding: 1em 0;
+        text-align: center;
     }
 
     .login {
@@ -164,5 +216,16 @@
         display: flex;
         gap: 1em;
         padding: 2em 0;
+    }
+
+    .invalid input {
+        border: 1px solid red;
+    }
+
+    @media (min-width: 35em) {
+        .formField {
+            max-width: 600px;
+            margin-inline: auto;
+        }
     }
 </style>

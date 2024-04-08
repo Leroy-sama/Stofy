@@ -1,5 +1,5 @@
 <template>
-    <section class="hero">
+    <!-- <section class="hero">
         <div class="hero__wrapper">
             <h1 class="hero__bigtext">
                 Welcome to BlackM, where buyers meet sellers.
@@ -14,7 +14,7 @@
                 <a href="">Shop Now!</a>
             </div>
         </div>
-    </section>
+    </section> -->
     <Home />
     <section class="categories">
         <div class="categories__wrapper">

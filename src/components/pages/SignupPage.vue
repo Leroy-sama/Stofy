@@ -7,6 +7,7 @@
         />
         <div class="signup__wrapper">
             <h2 class="signup__head">Sign Up</h2>
+            <p class="signup__desc">Enter your details to create an account</p>
             <form @submit.prevent="submitForm">
                 <div
                     class="form-field"
@@ -197,19 +198,26 @@
 <style scoped>
     .err-msg {
         color: red;
-        padding: 1em 0;
+        padding: 0.5em 0;
         font-size: 0.8rem;
     }
 
-    .signup__wrapper {
+    .signup {
         background-color: white;
+    }
+
+    .signup__wrapper {
         margin: 0 1em;
-        padding: 4em;
+        padding: 2em;
     }
 
     .signup__head {
-        padding: 1em 0;
+        /* padding: 1em 0; */
         font-size: 2em;
+    }
+
+    .signup__desc {
+        padding: 1em 0;
     }
 
     .signup__head {
@@ -285,6 +293,7 @@
         .signup__wrapper {
             max-width: 600px;
             margin-inline: auto;
+            padding: 4em;
         }
     }
 </style>
