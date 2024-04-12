@@ -17,14 +17,16 @@
                 </div>
             </div>
             <div class="description__details">
+                <span class="brand">{{ brand }}</span>
                 <h2 class="desc__head">{{ title }}</h2>
                 <p class="desc__text">
                     {{ description }}
                 </p>
                 <span class="price">${{ price }}</span>
                 <div class="cartQuantity">
-                    <div class="qty"></div>
-                    <button>Add to Cart</button>
+                    <QuantityItem />
+                    <!-- <div class="qty"></div> -->
+                    <button class="cart-btn">Add to Cart</button>
                 </div>
             </div>
         </div>
@@ -70,6 +72,8 @@
 </template>
 
 <script setup>
+    import QuantityItem from "@/components/items/QuantityItem.vue";
+    import CartIcon from "@/assets/icons/CartIcon.vue";
     import { onMounted, computed, ref } from "vue";
     import { useStore } from "vuex";
     import { useRoute } from "vue-router";
@@ -96,6 +100,10 @@
 
     const mainImage = computed(() => {
         return mainImageSrc.value || selectedProduct.value.mainImage;
+    });
+
+    const brand = computed(() => {
+        return selectedProduct.value.brand;
     });
 
     onMounted(() => {
@@ -125,14 +133,15 @@
 
     .firstSection {
         display: grid;
-        gap: 2em;
+        gap: 3em;
 
         padding: 2em 0;
     }
 
     /* .main-img {
-        max-width: 700px;
-        aspect-ratio: 1 / 1;
+        inline-size: 100%;
+        aspect-ratio: 4/3;
+        object-fit: cover;
     } */
 
     .box {
@@ -140,7 +149,7 @@
     }
 
     .box img {
-        max-width: 300px;
+        /* max-width: 300px; */
         inline-size: 100%;
         aspect-ratio: 4/3;
         object-fit: cover;
@@ -151,14 +160,48 @@
         gap: 1em;
     }
 
-    .qty {
-        width: 200px;
-        height: 40px;
-        background-color: red;
+    .brand {
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    .desc__head {
+        font-size: 2rem;
+    }
+
+    .desc__text {
+        padding: 1em 0;
+    }
+
+    .price {
+        font-family: "Fraunces", serif;
+        font-size: 1.5rem;
     }
 
     .description {
         padding: 2em 0;
+    }
+
+    .cartQuantity {
+        display: flex;
+        gap: 1.5em;
+        flex-direction: column;
+
+        margin: 1.5em 0;
+    }
+
+    .cartQuantity .cart-btn {
+        padding: 1em 3em;
+        background-color: black;
+        color: white;
+        border: 1px solid black;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    .cartQuantity .cart-btn:hover {
+        color: black;
+        background-color: white;
     }
 
     .properties {
@@ -180,6 +223,10 @@
         object-fit: cover;
     }
 
+    .details {
+        padding: 0 1em;
+    }
+
     @media (min-width: 35em) {
         .firstSection {
             grid-template-columns: 1fr 1fr;
@@ -187,11 +234,21 @@
 
         .cartQuantity {
             display: flex;
+            flex-direction: row;
             justify-content: space-between;
+            align-items: center;
+        }
+
+        .cartQuantity .cart-btn {
+            width: auto;
         }
 
         .mayLike__products {
             grid-template-columns: repeat(3, 1fr);
+        }
+
+        .desc__head {
+            font-size: 3rem;
         }
     }
 </style>

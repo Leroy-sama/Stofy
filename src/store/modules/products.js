@@ -49,7 +49,7 @@ export default {
                     description:
                         "New experiences with the new logitec mx keys. With a new detecting keyboard.",
                     price: 100.99,
-                    brand: "Glovo",
+                    brand: "logitec",
                 },
                 {
                     id: "p4",
