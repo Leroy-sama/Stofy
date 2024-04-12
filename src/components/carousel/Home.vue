@@ -1,7 +1,11 @@
 <template>
     <div class="carouselHome">
         <Carousel class="carousel" v-slot="{ currentSlide }">
-            <Slide v-for="(slide, index) in carouselSlides" :key="index">
+            <Slide
+                v-for="(slide, index) in carouselSlides"
+                :key="index"
+                class="slide"
+            >
                 <div v-show="currentSlide === index + 1" class="slide-info">
                     <div class="text-side">
                         <p class="text__desc">{{ slide.text }}</p>
@@ -49,7 +53,14 @@
 
     .carousel {
         position: relative;
-        height: 100vh;
+        height: 90vh;
+        background-color: white;
+    }
+
+    .silde {
+        position: absolute;
+        top: 0;
+        left: 0;
     }
 
     .slide-info {
@@ -65,9 +76,9 @@
         gap: 2em;
     }
 
-    .text-side {
-        /* padding: 4em; */
-    }
+    /* .text-side {
+         padding: 4em; 
+    } */
 
     .text__desc {
         font-size: 1.5rem;
@@ -97,8 +108,8 @@
 
     @media (min-width: 35em) {
         .carousel {
-            max-height: 100vh;
-            height: 100vh;
+            max-height: 90vh;
+            /* height: 100vh; */
         }
 
         .slide-info {
@@ -106,7 +117,7 @@
         }
 
         .text-side {
-            padding: 2em;
+            padding: 4em;
             max-width: 50%;
         }
 

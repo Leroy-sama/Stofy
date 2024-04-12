@@ -6,7 +6,7 @@
                 :key="prod.id"
                 :id="prod.id"
                 :title="prod.title"
-                :image="prod.image"
+                :mainImage="prod.mainImage"
                 :description="prod.description"
                 :price="prod.price"
             >

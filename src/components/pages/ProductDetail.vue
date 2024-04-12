@@ -2,22 +2,17 @@
     <section class="details" v-if="selectedProduct">
         <div class="firstSection">
             <div class="image__details">
-                <img :src="image" :alt="title" />
+                <img class="main-img" :src="mainImage" :alt="title" />
                 <div class="small-imgs">
-                    <div class="box">
-                        <img src="@/assets/images/sportsWear.jpg" />
-                    </div>
-                    <div class="box">
-                        <img src="@/assets/images/AF1_image2.png" />
-                    </div>
-                    <div class="box">
-                        <img src="@/assets/images/AF1_image3.png" />
-                    </div>
-                    <div class="box">
-                        <img src="@/assets/images/AF1_image4.png" />
-                    </div>
-                    <div class="box">
-                        <img src="@/assets/images/AF1_image5.png" />
+                    <div
+                        class="box"
+                        v-for="(
+                            images, index
+                        ) in selectedProduct.secondaryImages"
+                        :key="index"
+                        @click="updateMainImage(images)"
+                    >
+                        <img :src="images" />
                     </div>
                 </div>
             </div>
@@ -99,27 +94,22 @@
         return selectedProduct.value.price;
     });
 
-    const image = computed(() => {
-        return selectedProduct.value.image;
+    const mainImage = computed(() => {
+        return mainImageSrc.value || selectedProduct.value.mainImage;
     });
 
     onMounted(() => {
         const products = store.getters["prods/products"];
         selectedProduct.value = products.find((product) => {
-            product.id === id;
+            return product.id === id;
         });
     });
 
-    // if (product) {
-    //     selectedProduct.value = product;
-    //     console.log("product found");
-    // } else {
-    //     console.error(`Product with id ${props.id} not found `);
-    // }
+    const mainImageSrc = ref(null);
 
-    // selectedProduct = store.getters["prods/products"].find(
-    //     (product) => product.id === id
-    // );
+    const updateMainImage = (images) => {
+        mainImageSrc.value = images;
+    };
 </script>
 
 <style scoped>
@@ -138,6 +128,15 @@
         gap: 2em;
 
         padding: 2em 0;
+    }
+
+    /* .main-img {
+        max-width: 700px;
+        aspect-ratio: 1 / 1;
+    } */
+
+    .box {
+        padding: 1em 0;
     }
 
     .box img {

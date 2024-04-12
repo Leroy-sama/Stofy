@@ -2,7 +2,7 @@
     <div class="product">
         <div class="product__data">
             <div class="product__image">
-                <img :src="image" :alt="title" />
+                <img :src="mainImage" :alt="title" />
             </div>
             <div class="padding">
                 <div class="product__text">
@@ -22,7 +22,13 @@
     import { computed } from "vue";
     import { useRoute, RouterLink } from "vue-router";
 
-    const props = defineProps(["id", "image", "title", "price", "description"]);
+    const props = defineProps([
+        "id",
+        "mainImage",
+        "title",
+        "price",
+        "description",
+    ]);
 
     const productDetailsLink = computed(() => {
         const route = useRoute();

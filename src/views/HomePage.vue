@@ -15,7 +15,7 @@
             </div>
         </div>
     </section> -->
-    <Home />
+    <!-- <Home /> -->
     <section class="categories">
         <div class="categories__wrapper">
             <div class="head__wrapper">
@@ -25,18 +25,24 @@
             </div>
             <div class="categories__box">
                 <div class="category1">
-                    <span class="category__name"
-                        >Electronics & accessories</span
+                    <RouterLink to="/products" class="category__name"
+                        >Electronics & accessories</RouterLink
                     >
                 </div>
                 <div class="category2">
-                    <span class="category__name">Clothes</span>
+                    <RouterLink to="/products" class="category__name"
+                        >Clothes</RouterLink
+                    >
                 </div>
                 <div class="category3">
-                    <span class="category__name">Shoes</span>
+                    <RouterLink to="/products" class="category__name"
+                        >Shoes</RouterLink
+                    >
                 </div>
                 <div class="category4">
-                    <span class="category__name">Furniture</span>
+                    <RouterLink to="/products" class="category__name"
+                        >Furniture</RouterLink
+                    >
                 </div>
             </div>
             <div class="cta">
@@ -98,7 +104,7 @@
 </template>
 
 <script setup>
-    import Home from "@/components/carousel/Home.vue";
+    // import Home from "@/components/carousel/Home.vue";
 </script>
 
 <style scoped>
