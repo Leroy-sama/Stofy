@@ -1,18 +1,27 @@
 <template>
     <div class="container">
-        <h1 class="container__head">Slider Thingy</h1>
-        <Swiper>
-            <SwiperSlide v-for="photo in photos">
-                <img :src="`src/assets/images/${photo}`" alt="" />
-            </SwiperSlide>
-        </Swiper>
+        <div class="slide">
+            <div class="item">
+                <div
+                    class="content"
+                    style="background-image: url(@/assets/images)"
+                >
+                    <h1 class="content__head">Shopping site</h1>
+                    <p class="content__desc">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing
+                        elit. Repellendus eum aliquam aperiam perspiciatis
+                        dolorum expedita, dolorem dicta veniam eveniet quidem
+                        aliquid tenetur molestiae voluptatem commodi accusamus
+                        quaerat eius quae. Maxime.
+                    </p>
+                    <button class="content__btn">Shop now</button>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script setup>
-    import { Swiper, SwiperSlide } from "swiper/vue";
-    import "swiper/css";
-
     const photos = [
         "AF1_image2.png",
         "AF1_image3.png",
@@ -21,19 +30,4 @@
     ];
 </script>
 
-<style scoped>
-    .container {
-        /* max-height: 600px; */
-    }
-
-    .swiper {
-        max-width: 400px;
-        max-height: 400px;
-        overflow: visible;
-    }
-
-    .swiper-slide img {
-        width: 100%;
-        height: 100%;
-    }
-</style>
+<style scoped></style>

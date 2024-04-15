@@ -7,6 +7,7 @@ import ProductDetail from "@/components/pages/ProductDetail.vue";
 import SigninPage from "@/components/pages/SigninPage.vue";
 import SignupPage from "@/components/pages/SignupPage.vue";
 import ForgotPassword from "@/components/pages/ForgotPassword.vue";
+import CheckoutPage from "@/components/pages/CheckoutPage.vue";
 
 const routes = [
     {
@@ -41,6 +42,10 @@ const routes = [
     {
         path: "/:notFound(.*)",
         component: NotFound,
+    },
+    {
+        path: "/checkout",
+        component: CheckoutPage,
     },
 ];
 

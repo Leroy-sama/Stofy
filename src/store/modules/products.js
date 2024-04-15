@@ -45,11 +45,11 @@ export default {
                         "https://i.pinimg.com/236x/bd/14/37/bd1437e5421dc3babac7ea81513c480b.jpg",
                         "https://i.pinimg.com/236x/81/8f/b5/818fb56689784191ac9787332fd459f5.jpg",
                     ],
-                    title: "Logitec MX Keys",
+                    title: "Logitech MX Keys",
                     description:
                         "New experiences with the new logitec mx keys. With a new detecting keyboard.",
                     price: 100.99,
-                    brand: "logitec",
+                    brand: "logitech",
                 },
                 {
                     id: "p4",

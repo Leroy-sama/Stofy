@@ -20,7 +20,7 @@
 <style scoped>
     .modal {
         background-color: white;
-        max-width: 200px;
+        max-width: 400px;
         display: flex;
         justify-content: center;
         align-items: center;
