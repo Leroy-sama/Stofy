@@ -8,6 +8,7 @@ import SigninPage from "@/components/pages/SigninPage.vue";
 import SignupPage from "@/components/pages/SignupPage.vue";
 import ForgotPassword from "@/components/pages/ForgotPassword.vue";
 import CheckoutPage from "@/components/pages/CheckoutPage.vue";
+import FullCart from "@/components/pages/FullCart.vue";
 
 const routes = [
     {
@@ -42,6 +43,10 @@ const routes = [
     {
         path: "/:notFound(.*)",
         component: NotFound,
+    },
+    {
+        path: "/cart",
+        component: FullCart,
     },
     {
         path: "/checkout",

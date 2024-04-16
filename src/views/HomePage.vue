@@ -166,6 +166,10 @@
         padding: 2em 0;
     }
 
+    .about__head {
+        color: #163020;
+    }
+
     .categories__box {
         display: grid;
 
