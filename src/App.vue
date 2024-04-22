@@ -21,7 +21,7 @@
     }
 
     body {
-        background-color: #e1f0da;
+        /* background-color: #e1f0da; */
     }
 
     img {

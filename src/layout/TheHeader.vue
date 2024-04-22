@@ -22,7 +22,8 @@
             </ul>
             <div class="registerCart">
                 <RouterLink to="/signin" class="regis"><UserIcon /></RouterLink>
-                <div @click="toggleCart" class="cart" ref="carte">
+                <RouterLink to="/cart"><CartIcon /></RouterLink>
+                <!-- <div @click="toggleCart" class="cart" ref="carte">
                     <CartIcon class="icon-cart" />
                     <div v-show="showCart" class="cart__wrapper">
                         <div class="cart__header">
@@ -46,7 +47,7 @@
                             >
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </nav>
     </header>
