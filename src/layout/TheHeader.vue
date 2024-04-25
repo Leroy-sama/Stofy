@@ -14,7 +14,9 @@
 
             <ul class="nav-links" :class="{ active: state.isActive }">
                 <li>
-                    <RouterLink to="/products">Products</RouterLink>
+                    <RouterLink to="/products" @click.native="closeNavMenu"
+                        >Products</RouterLink
+                    >
                 </li>
                 <li>
                     <a href="#">About</a>
@@ -77,6 +79,10 @@
             showCart.value = !showCart.value;
         }
     };
+
+    const closeNavMenu = () => {
+        state.isActive = false;
+    };
 </script>
 
 <style scoped>
@@ -101,7 +107,7 @@
 
     .logo:hover {
         color: #163020;
-        scale: 0.9;
+        transform: scale(0.9) translateX(-2px);
     }
 
     .burger {
@@ -259,7 +265,7 @@
             flex-direction: row;
             align-items: center;
             padding: 0;
-            background: #e1f0da;
+            background: #fff;
         }
     }
 </style>

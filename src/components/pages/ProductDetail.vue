@@ -12,7 +12,7 @@
                         :key="index"
                         @click="updateMainImage(images)"
                     >
-                        <img :src="images" />
+                        <img class="box-imgs" :src="images" />
                     </div>
                 </div>
             </div>
@@ -25,7 +25,6 @@
                 <span class="price">${{ price }}</span>
                 <div class="cartQuantity">
                     <QuantityItem />
-                    <!-- <div class="qty"></div> -->
                     <button class="cart-btn">Add to Cart</button>
                 </div>
             </div>
@@ -138,17 +137,17 @@
         padding: 2em 0;
     }
 
-    /* .main-img {
+    .main-img {
         inline-size: 100%;
         aspect-ratio: 4/3;
         object-fit: cover;
-    } */
+    }
 
     .box {
         padding: 1em 0;
     }
 
-    .box img {
+    .box-imgs {
         /* max-width: 300px; */
         inline-size: 100%;
         aspect-ratio: 4/3;

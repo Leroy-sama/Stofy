@@ -2,12 +2,15 @@
     <div class="product">
         <div class="product__data">
             <div class="product__image">
-                <img :src="mainImage" :alt="title" />
+                <RouterLink :to="productDetailsLink">
+                    <img :src="mainImage" :alt="title" />
+                </RouterLink>
             </div>
             <div class="padding">
                 <div class="product__text">
-                    <RouterLink :to="productDetailsLink">prod</RouterLink>
-                    <h3 class="product__title">{{ title }}</h3>
+                    <RouterLink :to="productDetailsLink">
+                        <h3 class="product__title">{{ title }}</h3>
+                    </RouterLink>
                     <span class="product__price">${{ price }}</span>
                 </div>
                 <div class="product__action">
@@ -42,6 +45,7 @@
     .product {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
         background-color: white;
+        border-radius: 10px;
     }
 
     .padding {
@@ -52,6 +56,7 @@
         inline-size: 100%;
         aspect-ratio: 16/9;
         object-fit: cover;
+        border-radius: 10px 10px 0 0;
     }
 
     .product__title {
@@ -67,14 +72,15 @@
     .product__action button {
         background-color: black;
         color: white;
-        border: 1px solid black;
+
+        border: none;
         padding: 0.5em 1em;
         cursor: pointer;
         margin-top: 1em;
+        transition: all 0.3s ease-in-out;
     }
 
     .product__action button:hover {
-        color: black;
-        background-color: white;
+        background-color: rgba(0 0 0 / 0.8);
     }
 </style>

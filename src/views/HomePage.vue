@@ -1,26 +1,10 @@
 <template>
-    <!-- <section class="hero">
-        <div class="hero__wrapper">
-            <h1 class="hero__bigtext">
-                Welcome to BlackM, where buyers meet sellers.
-            </h1>
-            <p class="hero__desc">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint
-                repellat, sequi adipisci labore, debitis consequatur expedita
-                eius sed dolores explicabo et, cum excepturi facere provident
-                architecto dolore quibusdam! Veritatis, quasi?
-            </p>
-            <div class="hero-cta cta">
-                <a href="">Shop Now!</a>
-            </div>
-        </div>
-    </section> -->
     <Home />
     <section class="categories">
         <div class="categories__wrapper">
             <div class="head__wrapper">
                 <span class="arrow"></span>
-                <h2 class="categories__head">Shop our product categories</h2>
+                <h2 class="categories__head">Product categories</h2>
                 <span class="arrow"></span>
             </div>
             <div class="categories__box">
@@ -131,6 +115,11 @@
         align-items: center;
         justify-content: center;
         gap: 0.5em;
+    }
+
+    .categories,
+    .about {
+        padding: 0 1em;
     }
 
     .categories__wrapper,

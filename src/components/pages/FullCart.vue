@@ -9,6 +9,9 @@
                         <p class="item__name">Nike Cactus Jack</p>
                         <span class="item__cost">$110</span>
                     </div>
+                    <div class="quantity">
+                        <span class="qty">X1</span>
+                    </div>
                     <DeleteIcon class="del-icon" />
                 </div>
                 <div class="cart__content">
@@ -16,6 +19,9 @@
                     <div class="item__details">
                         <p class="item__name">Nike Cactus Jack</p>
                         <span class="item__cost">$110</span>
+                    </div>
+                    <div class="quantity">
+                        <span class="qty">X1</span>
                     </div>
                     <DeleteIcon class="del-icon" />
                 </div>

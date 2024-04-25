@@ -1,5 +1,10 @@
 <template>
-    <section>
+    <section class="products">
+        <div class="head">
+            <span class="line"></span>
+            <h1 class="products__head">All Products</h1>
+        </div>
+
         <div class="products__wrapper">
             <ProductItem
                 v-for="prod in products"
@@ -27,10 +32,31 @@
 </script>
 
 <style scoped>
+    .products {
+        margin: 0 1em 3em;
+    }
+
+    .head {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+    }
+
+    .line {
+        background-color: rgb(5, 31, 5);
+        display: block;
+        width: 50px;
+        height: 2px;
+    }
+
+    .products__head {
+        color: rgb(5, 31, 5);
+        padding: 1em 0;
+    }
+
     .products__wrapper {
         display: grid;
         gap: 2em;
-        margin: 0 1em;
     }
 
     @media (min-width: 35em) {

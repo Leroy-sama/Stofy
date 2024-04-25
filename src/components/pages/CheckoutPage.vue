@@ -1,7 +1,7 @@
 <template>
     <section class="checkout">
+        <RouterLink to="/cart" class="goback">Back</RouterLink>
         <div class="section__wrapper">
-            <!-- <RouterLink to="/cart" href="#" class="goback">Back</RouterLink> -->
             <div class="checkout__details">
                 <h1 class="checkout__head">Checkout</h1>
                 <div class="checkout__wrapper">
@@ -13,6 +13,7 @@
                                 <input
                                     type="text"
                                     placeholder="Kobbie Mainoo"
+                                    v-model.trim="name.val"
                                 />
                             </div>
                             <div class="form-control">
@@ -20,6 +21,7 @@
                                 <input
                                     type="email"
                                     placeholder="kobbie@mainoo.com"
+                                    v-model.trim="email.val"
                                 />
                             </div>
                             <div class="form-control">
@@ -28,6 +30,7 @@
                                     type="tel"
                                     name="tele"
                                     placeholder="+123 456789012"
+                                    v-model.trim="phone.val"
                                 />
                             </div>
                         </div>
@@ -40,19 +43,32 @@
                                 <input
                                     type="text"
                                     placeholder="143 Jackridge Street"
+                                    v-model.trim="address.val"
                                 />
                             </div>
                             <div class="form-control">
                                 <label for="name">ZIP Code</label>
-                                <input type="text" placeholder="100001" />
+                                <input
+                                    type="text"
+                                    placeholder="100001"
+                                    v-model.trim="zipCode.val"
+                                />
                             </div>
                             <div class="form-control">
                                 <label for="name">City</label>
-                                <input type="text" placeholder="Ruiru City" />
+                                <input
+                                    type="text"
+                                    placeholder="Ruiru City"
+                                    v-model.trim="city.val"
+                                />
                             </div>
                             <div class="form-control">
                                 <label for="name">County</label>
-                                <input type="text" placeholder="Kiambu" />
+                                <input
+                                    type="text"
+                                    placeholder="Kiambu"
+                                    v-model.trim="county.val"
+                                />
                             </div>
                         </div>
                     </div>
@@ -136,12 +152,99 @@
     </section>
 </template>
 
-<script setup></script>
+<script setup>
+    import { ref, reactive } from "vue";
+
+    const name = reactive({
+        val: "",
+        isValid: true,
+    });
+
+    const email = reactive({
+        val: "",
+        isValid: true,
+    });
+
+    const phone = reactive({
+        val: "",
+        isValid: true,
+    });
+
+    const address = reactive({
+        val: "",
+        isValid: true,
+    });
+
+    const zipCode = reactive({
+        val: "",
+        isValid: true,
+    });
+
+    const city = reactive({
+        val: "",
+        isValid: true,
+    });
+
+    const county = reactive({
+        val: "",
+        isValid: true,
+    });
+
+    const formIsValid = ref(true);
+
+    const clearValidity = (input) => {
+        input.isValid = true;
+    };
+
+    const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+    };
+
+    const validateForm = () => {
+        formIsValid.value = true;
+        if (name.val === "") {
+            name.isValid = false;
+            formIsValid.value = false;
+        }
+        if (email.val === "" || !validateEmail(email)) {
+            email.isValid = false;
+            formIsValid.value = false;
+        }
+        if (phone.val === "") {
+            phone.isValid = false;
+            formIsValid.value = false;
+        }
+        if (address.val === "") {
+            address.isValid = false;
+            formIsValid.value = false;
+        }
+        if (zipCode.val === "") {
+            zipCode.isValid = false;
+            formIsValid.value = false;
+        }
+        if (city.val === "") {
+            city.isValid = false;
+            formIsValid.value = false;
+        }
+        if (county.val === "") {
+            county.isValid = false;
+            formIsValid.value = false;
+        }
+    };
+</script>
 
 <style scoped>
+    .goback {
+        margin: 2em 0;
+        padding: 1em 0;
+    }
+
     .checkout {
-        margin: 0 1em 3em;
-        /* background-color: rgb(228, 228, 228); */
+        margin: 1em 1em 3em;
     }
 
     .section__wrapper {
@@ -154,6 +257,7 @@
     .summary {
         padding: 1.5em;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+        margin-top: 1em;
     }
 
     .summ__head {
@@ -267,16 +371,23 @@
 
     @media (min-width: 35em) {
         .section__wrapper {
-            flex-direction: row;
-            /* max-width: 1200px; */
+            display: grid;
+            grid-template-areas: "ch ch ch su";
+            align-items: start;
+            max-width: 1100px;
             width: 100%;
             margin-inline: auto;
-            justify-content: center;
-            align-items: start;
         }
 
         .checkout__details {
-            max-width: 700px;
+            grid-area: ch;
+            padding: 2.5em;
+        }
+
+        .summary {
+            padding: 2.5em;
+            grid-area: su;
+            margin-top: 0;
         }
     }
 </style>

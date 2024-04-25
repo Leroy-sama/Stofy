@@ -17,6 +17,7 @@
         padding: 0;
         margin: 0;
         box-sizing: border-box;
+        line-height: 1.5;
         text-decoration: none;
     }
 

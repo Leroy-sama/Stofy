@@ -1,18 +1,20 @@
 <template>
-    <footer>
+    <footer class="footer">
         <div class="footer__wrapper">
             <div class="logo-div">
                 <h1 class="logo">BlackM</h1>
             </div>
             <div class="columns__wrapper">
                 <div class="column">
-                    <p class="sub-text">
-                        Subscribe to our newsletter to get updated terms and
-                        information
-                    </p>
-                    <div class="form-control">
-                        <input type="text" name="email" id="email" />
-                        <button type="submit">Subscribe</button>
+                    <div class="cont-links">
+                        <p class="sub-text">
+                            Subscribe to our newsletter to get updated terms and
+                            information
+                        </p>
+                        <div class="form-control">
+                            <input type="text" name="email" id="email" />
+                            <button type="submit">Subscribe</button>
+                        </div>
                     </div>
                 </div>
                 <div class="column">
@@ -28,13 +30,15 @@
                 </div>
                 <div class="column">
                     <h3 class="contact__head">Contact Us</h3>
-                    <div class="phone">
-                        <FluentPhone />
-                        <span>+254715354384</span>
-                    </div>
-                    <div class="email">
-                        <EmailIcon />
-                        <span>blackmenterprises@gmail.com</span>
+                    <div class="cont-links">
+                        <div class="phone">
+                            <FluentPhone />
+                            <span>+254715354384</span>
+                        </div>
+                        <div class="email">
+                            <EmailIcon />
+                            <span>blackmenterprises@gmail.com</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -51,7 +55,7 @@
     footer {
         background-color: #163020;
         color: #e1f0da;
-        padding: 0 1em;
+        padding: 2em 1em;
     }
 
     .columns__wrapper {
@@ -68,6 +72,7 @@
     .links__head,
     .contact__head {
         color: yellow;
+        /* padding: 1em 0; */
     }
 
     #email {
@@ -92,6 +97,11 @@
     .links__items a:hover {
         color: yellow;
         transform: translateX(20px);
+    }
+
+    .cont-links {
+        display: grid;
+        gap: 0.7em;
     }
 
     .phone,
