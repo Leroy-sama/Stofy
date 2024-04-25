@@ -15,7 +15,7 @@
             </div>
         </div>
     </section> -->
-    <!-- <Home /> -->
+    <Home />
     <section class="categories">
         <div class="categories__wrapper">
             <div class="head__wrapper">
@@ -104,7 +104,7 @@
 </template>
 
 <script setup>
-    // import Home from "@/components/carousel/Home.vue";
+    import Home from "@/components/carousel/Home.vue";
 </script>
 
 <style scoped>

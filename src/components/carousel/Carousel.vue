@@ -51,7 +51,7 @@
         currentSlide.value = index + 1;
     };
 
-    //autoplay
+    // autoplay
     // const autoplay = () => {
     //     setInterval(() => {
     //         nextSlide();
@@ -68,6 +68,11 @@
 </script>
 
 <style scoped>
+    .carousel {
+        overflow-x: hidden;
+    }
+
+    /* FIXME */
     .navigate {
         padding: 0 1em;
         height: 100%;
@@ -91,12 +96,12 @@
     i {
         cursor: pointer;
         display: flex;
-        align-items: center;
         justify-content: center;
+        align-items: center;
         border-radius: 50%;
         width: 40px;
         height: 40px;
-        background-color: #163020;
+        background-color: #6347c7;
         color: white;
     }
 
@@ -105,22 +110,26 @@
         bottom: 1.5em;
         width: 100%;
         display: flex;
+        gap: 1em;
         justify-content: center;
         align-items: center;
-        gap: 1em;
     }
 
     .pagination span {
         cursor: pointer;
-        width: 20px;
-        height: 20px;
+        width: 1.3em;
+        height: 1.3em;
         border-radius: 50%;
         background-color: #fff;
-        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
-            0 1px 2px 0 rgba(0, 0, 0, 0.06);
     }
 
     .pagination span.active {
-        background-color: #163020;
+        background-color: #6347c7;
+    }
+
+    @media (max-width: 35em) {
+        .pagination {
+            display: none;
+        }
     }
 </style>
