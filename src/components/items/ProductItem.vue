@@ -14,7 +14,7 @@
                     <span class="product__price">${{ price }}</span>
                 </div>
                 <div class="product__action">
-                    <button>Add to cart</button>
+                    <button @click="addToCart">Add to cart</button>
                 </div>
             </div>
         </div>
@@ -24,6 +24,7 @@
 <script setup>
     import { computed } from "vue";
     import { useRoute, RouterLink } from "vue-router";
+    import { useStore } from "vuex";
 
     const props = defineProps([
         "id",
@@ -37,6 +38,13 @@
         const route = useRoute();
         return route.path + "/" + props.id;
     });
+
+    const addToCart = () => {
+        const store = useStore();
+        store.dispatch("cart/addToCart", {
+            id: props.id,
+        });
+    };
 </script>
 
 <style scoped>

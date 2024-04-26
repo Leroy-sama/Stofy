@@ -18,27 +18,45 @@ const routes = [
     {
         path: "/home",
         component: HomePage,
+        meta: {
+            title: "Home",
+        },
     },
     {
         path: "/products",
         component: ProductsPage,
+        meta: {
+            title: "All Products",
+        },
     },
     {
         path: "/products/:id",
         component: ProductDetail,
         props: true,
+        meta: {
+            title: "Product",
+        },
     },
     {
         path: "/signin",
         component: SigninPage,
+        meta: {
+            title: "Sign In",
+        },
     },
     {
         path: "/signup",
         component: SignupPage,
+        meta: {
+            title: "Sign Up",
+        },
     },
     {
         path: "/forgot",
         component: ForgotPassword,
+        meta: {
+            title: "Forgot Pswd",
+        },
     },
     {
         path: "/:notFound(.*)",
@@ -47,16 +65,27 @@ const routes = [
     {
         path: "/cart",
         component: FullCart,
+        meta: {
+            title: "User Cart",
+        },
     },
     {
         path: "/checkout",
         component: CheckoutPage,
+        meta: {
+            title: "Checkout",
+        },
     },
 ];
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes,
+});
+
+router.beforeEach((to, from, next) => {
+    document.title = `${to.meta.title} | BlackM`;
+    next();
 });
 
 export default router;

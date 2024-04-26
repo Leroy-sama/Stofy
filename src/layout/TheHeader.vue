@@ -24,7 +24,10 @@
             </ul>
             <div class="registerCart">
                 <RouterLink to="/signin" class="regis"><UserIcon /></RouterLink>
-                <RouterLink to="/cart"><CartIcon /></RouterLink>
+                <RouterLink to="/cart" class="cart-link">
+                    <CartIcon />
+                    <span class="cart-count">{{ cartQuantity }}</span>
+                </RouterLink>
                 <!-- <div @click="toggleCart" class="cart" ref="carte">
                     <CartIcon class="icon-cart" />
                     <div v-show="showCart" class="cart__wrapper">
@@ -60,9 +63,11 @@
     import CartIcon from "@/assets/icons/CartIcon.vue";
     import DeleteIcon from "@/assets/icons/DeleteIcon.vue";
 
-    import { reactive, ref } from "vue";
+    import { computed, reactive, ref } from "vue";
+    import { useStore } from "vuex";
     import { RouterLink } from "vue-router";
 
+    const store = useStore();
     const showCart = ref(null);
     const carte = ref(null);
 
@@ -83,6 +88,10 @@
     const closeNavMenu = () => {
         state.isActive = false;
     };
+
+    const cartQuantity = computed(() => {
+        return store.getters["cart/quantity"];
+    });
 </script>
 
 <style scoped>
@@ -108,6 +117,24 @@
     .logo:hover {
         color: #163020;
         transform: scale(0.9) translateX(-2px);
+    }
+
+    .cart-link {
+        position: relative;
+    }
+
+    .cart-count {
+        position: absolute;
+        top: -0.3em;
+        left: 1em;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #163020;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
     }
 
     .burger {
