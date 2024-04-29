@@ -7,7 +7,7 @@
 
         <div class="products__wrapper">
             <ProductItem
-                v-for="prod in products"
+                v-for="prod in productStore.products"
                 :key="prod.id"
                 :id="prod.id"
                 :title="prod.title"
@@ -21,14 +21,14 @@
 </template>
 
 <script setup>
-    import { computed } from "vue";
-    import { useStore } from "vuex";
+    import { useProductStore } from "@/pinia/productStore";
     import ProductItem from "../items/ProductItem.vue";
-    const store = useStore();
 
-    const products = computed(() => {
-        return store.getters["prods/products"];
-    });
+    const productStore = useProductStore();
+
+    // const products = computed(() => {
+    //     return store.getters["prods/products"];
+    // });
 </script>
 
 <style scoped>

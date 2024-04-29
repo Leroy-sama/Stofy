@@ -5,11 +5,11 @@
             <div class="cont-sum">
                 <div class="cart__side">
                     <CartItem
-                        v-for="item in cartItems"
+                        v-for="item in cartStore.items"
                         :key="item.productId"
-                        :prod-id="item.productId"
+                        :prodId="item.productId"
                         :title="item.title"
-                        :image="item.image"
+                        :mainImage="item.mainImage"
                         :price="item.price"
                         :qty="item.qty"
                     ></CartItem>
@@ -19,7 +19,7 @@
                     <div class="totals">
                         <div class="total">
                             <span class="total__span">Total</span>
-                            <p class="total__tot">{{ cartTotal }}</p>
+                            <p class="total__tot">sh {{ cartStore.total }}</p>
                         </div>
                         <div class="shipping">
                             <span class="ship__span">Shipping</span>
@@ -27,11 +27,11 @@
                         </div>
                         <div class="taxt">
                             <span class="tax__span">Vat(included)</span>
-                            <p class="tax__tot">Sh.4000</p>
+                            <p class="tax__tot">sh 300</p>
                         </div>
                         <div class="grand">
                             <span class="grand__span">Grand Total</span>
-                            <p class="grand__tot">Sh.28500</p>
+                            <p class="grand__tot">sh{{ cartStore.total }}</p>
                         </div>
                     </div>
                     <RouterLink to="/checkout" class="sbt">Checkout</RouterLink>
@@ -43,19 +43,9 @@
 
 <script setup>
     import CartItem from "@/components/items/CartItem.vue";
+    import { useCartStore } from "@/pinia/cartStore";
 
-    import { computed } from "vue";
-    import { useStore } from "vuex";
-
-    const store = useStore();
-
-    const cartTotal = computed(() => {
-        return store.getters["cart/totalSum"].toFixed(2);
-    });
-
-    const cartItems = computed(() => {
-        return store.getters["cart/products"];
-    });
+    const cartStore = useCartStore();
 </script>
 
 <style scoped>

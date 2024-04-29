@@ -24,7 +24,9 @@
 <script setup>
     import { computed } from "vue";
     import { useRoute, RouterLink } from "vue-router";
-    import { useStore } from "vuex";
+    import { useCartStore } from "@/pinia/cartStore";
+
+    const cartStore = useCartStore();
 
     const props = defineProps([
         "id",
@@ -40,9 +42,11 @@
     });
 
     const addToCart = () => {
-        const store = useStore();
-        store.dispatch("cart/addToCart", {
+        cartStore.addProductToCart({
             id: props.id,
+            title: props.title,
+            image: props.mainImage,
+            price: props.price,
         });
     };
 </script>

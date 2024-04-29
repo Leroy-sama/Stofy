@@ -26,7 +26,7 @@
                 <RouterLink to="/signin" class="regis"><UserIcon /></RouterLink>
                 <RouterLink to="/cart" class="cart-link">
                     <CartIcon />
-                    <span class="cart-count">{{ cartQuantity }}</span>
+                    <span class="cart-count">{{ cartStore.qty }}</span>
                 </RouterLink>
                 <!-- <div @click="toggleCart" class="cart" ref="carte">
                     <CartIcon class="icon-cart" />
@@ -64,10 +64,10 @@
     import DeleteIcon from "@/assets/icons/DeleteIcon.vue";
 
     import { computed, reactive, ref } from "vue";
-    import { useStore } from "vuex";
     import { RouterLink } from "vue-router";
+    import { useCartStore } from "@/pinia/cartStore";
 
-    const store = useStore();
+    const cartStore = useCartStore();
     const showCart = ref(null);
     const carte = ref(null);
 
@@ -90,7 +90,7 @@
     };
 
     const cartQuantity = computed(() => {
-        return store.getters["cart/quantity"];
+        return cartStore.qty;
     });
 </script>
 

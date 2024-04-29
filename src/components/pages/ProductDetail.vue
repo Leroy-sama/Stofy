@@ -24,8 +24,10 @@
                 </p>
                 <span class="price">${{ price }}</span>
                 <div class="cartQuantity">
-                    <QuantityItem />
-                    <button class="cart-btn">Add to Cart</button>
+                    <QuantityItem :quantity="quantity" />
+                    <button class="cart-btn" @click="addToCart">
+                        Add to Cart
+                    </button>
                 </div>
             </div>
         </div>
@@ -72,18 +74,21 @@
 
 <script setup>
     import QuantityItem from "@/components/items/QuantityItem.vue";
-    import CartIcon from "@/assets/icons/CartIcon.vue";
+
+    import { useProductStore } from "@/pinia/productStore";
+    import { useCartStore } from "@/pinia/cartStore";
     import { onMounted, computed, ref } from "vue";
-    import { useStore } from "vuex";
     import { useRoute } from "vue-router";
 
-    const route = useRoute();
+    const productStore = useProductStore();
+    const cartStore = useCartStore();
 
-    const store = useStore();
+    const route = useRoute();
 
     const id = route.params.id;
 
     const selectedProduct = ref(null);
+    const quantity = ref(0);
 
     const title = computed(() => {
         return selectedProduct.value.title;
@@ -106,7 +111,7 @@
     });
 
     onMounted(() => {
-        const products = store.getters["prods/products"];
+        const products = productStore.products;
         selectedProduct.value = products.find((product) => {
             return product.id === id;
         });
@@ -116,6 +121,16 @@
 
     const updateMainImage = (images) => {
         mainImageSrc.value = images;
+    };
+
+    const addToCart = () => {
+        cartStore.addProductToCart({
+            id: selectedProduct.value.id,
+            title: selectedProduct.value.title,
+            mainImage: selectedProduct.value.mainImage,
+            price: selectedProduct.value.price,
+            qty: selectedQuantity.value,
+        });
     };
 </script>
 
