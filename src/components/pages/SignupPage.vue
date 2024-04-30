@@ -8,7 +8,7 @@
         <div class="signup__wrapper">
             <h2 class="signup__head">Sign Up</h2>
             <p class="signup__desc">Enter your details to create an account</p>
-            <form @submit.prevent="submitForm">
+            <form @submit.prevent="register">
                 <div
                     class="form-field"
                     :class="{ invalid: !firstname.isValid }"
@@ -112,14 +112,26 @@
     import GoogleIcon from "@/assets/icons/GoogleIcon.vue";
     import FacebookIcon from "@/assets/icons/FacebookIcon.vue";
     import Modal from "../ui/Modal.vue";
-
     import { ref, reactive } from "vue";
+    import { useRouter } from "vue-router";
+
+    import { app } from "@/firebase/firebase";
+    import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
     const modalMessage = ref("All fields are clear!!");
     const modalActive = ref(null);
+    const router = useRouter();
 
     const closeModal = () => {
         modalActive.value = !modalActive.value;
+    };
+
+    const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
     };
 
     const firstname = reactive({
@@ -159,7 +171,7 @@
             lastname.isValid = false;
             formIsValid.value = false;
         }
-        if (emailAddress.val === "" || !emailAddress.val.includes("@")) {
+        if (emailAddress.val === "" || !validateEmail(emailAddress.val)) {
             emailAddress.isValid = false;
             formIsValid.value = false;
         }
@@ -173,24 +185,42 @@
         }
     };
 
-    const submitForm = () => {
+    // const submitForm = () => {
+    //     validateForm();
+
+    //     if (!formIsValid.value) {
+    //         modalActive.value = false;
+    //         return;
+    //     } else {
+    //         modalActive.value = true;
+    //         console.log("form is valid!!");
+
+    //         const formData = {
+    //             first: firstname.val,
+    //             last: lastname.val,
+    //             email: emailAddress.val,
+    //             pswd: password.val,
+    //         };
+
+    //         console.log(formData);
+    //     }
+    // };
+
+    const register = async () => {
         validateForm();
-
         if (!formIsValid.value) {
-            modalActive.value = false;
             return;
-        } else {
-            modalActive.value = true;
-            console.log("form is valid!!");
+        }
 
-            const formData = {
-                first: firstname.val,
-                last: lastname.val,
-                email: emailAddress.val,
-                pswd: password.val,
-            };
-
-            console.log(formData);
+        if (formIsValid.value) {
+            const firebaseAuth = getAuth(app);
+            const createUser = await createUserWithEmailAndPassword(
+                firebaseAuth,
+                emailAddress.val,
+                password.val
+            );
+            console.log(createUser.user);
+            router.push("/home");
         }
     };
 </script>

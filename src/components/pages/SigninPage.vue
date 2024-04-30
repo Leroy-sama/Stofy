@@ -7,7 +7,7 @@
                     <p class="sign__text">
                         Enter your email and password to login to your account
                     </p>
-                    <form class="form2" @submit.prevent="signInToAccount">
+                    <form class="form2" @submit.prevent="signIn">
                         <div
                             class="form-control"
                             :class="{ invalid: !email.isValid }"
@@ -42,7 +42,7 @@
                         </div>
                         <button type="submit" class="btn">Sign In</button>
                     </form>
-                    <a href="#">Forgot your password</a>
+                    <RouterLink to="/forgot">Forgot your password</RouterLink>
                     <div class="title">
                         <span class="line"></span>
                         <span class="text">Or</span>
@@ -68,8 +68,15 @@
 <script setup>
     import GoogleIcon from "@/assets/icons/GoogleIcon.vue";
     import FacebookIcon from "@/assets/icons/FacebookIcon.vue";
-    import { RouterLink } from "vue-router";
+    import { RouterLink, useRouter } from "vue-router";
     import { reactive, ref } from "vue";
+    import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+    import { app } from "@/firebase/firebase";
+
+    const router = useRouter();
+
+    const error = ref(null);
+    const errMsg = ref("");
 
     const email = reactive({
         val: "",
@@ -81,6 +88,14 @@
         isValid: true,
     });
 
+    const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+    };
+
     const formIsValid = ref(true);
 
     const clearValidity = (input) => {
@@ -89,7 +104,7 @@
 
     const validateForm = () => {
         formIsValid.value = true;
-        if (email.val === "") {
+        if (email.val === "" || !validateEmail(email.val)) {
             email.isValid = false;
             formIsValid.value = false;
         }
@@ -100,21 +115,43 @@
         }
     };
 
-    const signInToAccount = () => {
+    // const signInToAccount = () => {
+    //     validateForm();
+
+    //     if (!formIsValid.value) {
+    //         console.log("form not valid");
+    //         return;
+    //     } else {
+    //         console.log("form Is Valid");
+
+    //         const formData = {
+    //             email: email.val,
+    //             pswd: pswd.val,
+    //         };
+
+    //         console.log(formData);
+    //     }
+    // };
+
+    const signIn = async () => {
         validateForm();
-
         if (!formIsValid.value) {
-            console.log("form not valid");
             return;
-        } else {
-            console.log("form Is Valid");
+        }
 
-            const formData = {
-                email: email.val,
-                pswd: pswd.val,
-            };
-
-            console.log(formData);
+        if (formIsValid.value) {
+            const firebaseAuth = getAuth(app);
+            try {
+                const loginUser = signInWithEmailAndPassword(
+                    firebaseAuth,
+                    email.val,
+                    pswd.val
+                );
+                router.push("/home");
+            } catch (err) {
+                error.value = true;
+                errMsg.value = err.message;
+            }
         }
     };
 </script>

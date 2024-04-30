@@ -19,14 +19,23 @@
 
 <style scoped>
     .modal {
-        background-color: white;
-        max-width: 400px;
+        background-color: rgba(0, 0, 0, 0.7);
+
         display: flex;
         justify-content: center;
         align-items: center;
         position: absolute;
         z-index: 9999;
         padding: 2em;
+        width: 100%;
+        height: 100%;
+        top: 0;
+    }
+
+    .modal__content {
+        max-width: 400px;
+        background-color: #fff;
+        padding: 1.5em;
     }
 
     .modal__text {
@@ -39,5 +48,6 @@
         color: white;
         border: none;
         cursor: pointer;
+        width: 100%;
     }
 </style>
