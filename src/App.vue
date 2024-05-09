@@ -1,6 +1,17 @@
 <script setup>
     import TheHeader from "./layout/TheHeader.vue";
     import TheFooter from "./layout/TheFooter.vue";
+    import { getAuth, onAuthStateChanged } from "firebase/auth";
+
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const uid = user.uid;
+            console.log(uid);
+        } else {
+            console.log("user is logged out");
+        }
+    });
 </script>
 
 <template>
@@ -19,10 +30,6 @@
         box-sizing: border-box;
         line-height: 1.5;
         text-decoration: none;
-    }
-
-    body {
-        /* background-color: #e1f0da; */
     }
 
     img {

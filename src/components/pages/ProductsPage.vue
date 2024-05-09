@@ -1,21 +1,27 @@
 <template>
     <section class="products">
-        <div class="head">
-            <span class="line"></span>
-            <h1 class="products__head">All Products</h1>
-        </div>
-
         <div class="products__wrapper">
-            <ProductItem
-                v-for="prod in productStore.products"
-                :key="prod.id"
-                :id="prod.id"
-                :title="prod.title"
-                :mainImage="prod.mainImage"
-                :description="prod.description"
-                :price="prod.price"
-            >
-            </ProductItem>
+            <div class="head">
+                <span class="line"></span>
+                <h1 class="products__head">All Products</h1>
+            </div>
+            <div class="search">
+                <div class="form__control">
+                    <input type="text" placeholder="Search products..." />
+                </div>
+            </div>
+            <div class="productitems__wrapper">
+                <ProductItem
+                    v-for="prod in productStore.products"
+                    :key="prod.id"
+                    :id="prod.id"
+                    :title="prod.title"
+                    :mainImage="prod.mainImage"
+                    :description="prod.description"
+                    :price="prod.price"
+                >
+                </ProductItem>
+            </div>
         </div>
     </section>
 </template>
@@ -54,16 +60,34 @@
         padding: 1em 0;
     }
 
-    .products__wrapper {
+    .productitems__wrapper {
         display: grid;
         gap: 2em;
+    }
+
+    .search {
+        display: flex;
+        justify-content: center;
+    }
+
+    .form__control {
+        padding: 2em;
+    }
+
+    .form__control input {
+        max-width: 100%;
+        width: 600px;
+        padding: 0.5em 1em;
+        outline: none;
     }
 
     @media (min-width: 35em) {
         .products__wrapper {
             max-width: 1200px;
             margin-inline: auto;
+        }
 
+        .productitems__wrapper {
             grid-template-columns: repeat(3, 1fr);
             gap: 2em;
         }

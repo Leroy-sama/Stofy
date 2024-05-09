@@ -89,6 +89,10 @@
 
 <script setup>
     import Home from "@/components/carousel/Home.vue";
+
+    import { useAboutStore } from "@/pinia/aboutStore";
+
+    const aboutStore = useAboutStore();
 </script>
 
 <style scoped>

@@ -114,10 +114,13 @@
     import Modal from "../ui/Modal.vue";
     import { ref, reactive } from "vue";
     import { useRouter } from "vue-router";
+    import { useUserStore } from "@/pinia/userStore";
+    import { doc, setDoc } from "firebase/firestore";
 
-    import { app } from "@/firebase/firebase";
+    import { app, db } from "@/firebase/firebase";
     import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
+    const userStore = useUserStore();
     const modalMessage = ref("All fields are clear!!");
     const modalActive = ref(null);
     const router = useRouter();
@@ -214,13 +217,30 @@
 
         if (formIsValid.value) {
             const firebaseAuth = getAuth(app);
-            const createUser = await createUserWithEmailAndPassword(
-                firebaseAuth,
-                emailAddress.val,
-                password.val
-            );
-            console.log(createUser.user);
-            router.push("/home");
+            try {
+                const createUser = await createUserWithEmailAndPassword(
+                    firebaseAuth,
+                    emailAddress.val,
+                    password.val
+                );
+                const { email, uid } = createUser.user;
+                userStore.addUser({ email, uid });
+
+                //firestore
+                const userData = {
+                    firstname: firstname.val,
+                    lastname: lastname.val,
+                    email: emailAddress.val,
+                };
+                const userUid = createUser.user.uid;
+                const userDocRef = doc(db, "users", userUid);
+                await setDoc(userDocRef, userData);
+
+                console.log("userdata stored in firestore:", userData);
+                router.push("/home");
+            } catch (error) {
+                console.error(error);
+            }
         }
     };
 </script>

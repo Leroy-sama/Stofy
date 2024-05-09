@@ -23,7 +23,10 @@
                 </li>
             </ul>
             <div class="registerCart">
-                <RouterLink to="/signin" class="regis"><UserIcon /></RouterLink>
+                <RouterLink to="/signin" class="regis">
+                    <div v-if="user" class="user">LM</div>
+                    <UserIcon v-else />
+                </RouterLink>
                 <RouterLink to="/cart" class="cart-link">
                     <CartIcon />
                     <span class="cart-count">{{ cartStore.qty }}</span>
@@ -63,13 +66,32 @@
     import CartIcon from "@/assets/icons/CartIcon.vue";
     import DeleteIcon from "@/assets/icons/DeleteIcon.vue";
 
-    import { computed, reactive, ref } from "vue";
+    import { computed, onMounted, reactive, ref } from "vue";
     import { RouterLink } from "vue-router";
     import { useCartStore } from "@/pinia/cartStore";
+    import { getAuth, onAuthStateChanged } from "firebase/auth";
 
     const cartStore = useCartStore();
     const showCart = ref(null);
     const carte = ref(null);
+
+    const user = ref(null);
+
+    const auth = getAuth();
+    onMounted(() => {
+        onAuthStateChanged(auth, (authUser) => {
+            user.value = authUser;
+        });
+    });
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const uid = user.uid;
+            console.log(uid);
+        } else {
+            console.log("user is logged out");
+        }
+    });
 
     const state = reactive({
         isActive: false,
@@ -269,6 +291,17 @@
         background-color: #163020;
         color: #fff;
         padding: 0.5em 1em;
+    }
+
+    .user {
+        width: 2em;
+        height: 2em;
+        color: white;
+        background-color: #163020;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
     }
 
     @media (min-width: 35em) {

@@ -142,15 +142,17 @@
         if (formIsValid.value) {
             const firebaseAuth = getAuth(app);
             try {
-                const loginUser = signInWithEmailAndPassword(
+                const loginUser = await signInWithEmailAndPassword(
                     firebaseAuth,
                     email.val,
                     pswd.val
                 );
                 router.push("/home");
+                console.log(loginUser.user.uid);
             } catch (err) {
-                error.value = true;
-                errMsg.value = err.message;
+                // error.value = true;
+                // errMsg.value = err.message;
+                console.log("error");
             }
         }
     };

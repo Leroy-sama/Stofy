@@ -28,7 +28,15 @@
 
     const email = ref("");
 
-    const modalActive = ref(true);
+    const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+    };
+
+    const modalActive = ref(null);
     const modalMessage = ref();
 
     const closeModal = () => {
@@ -37,15 +45,21 @@
     };
 
     const resetPswd = () => {
-        const auth = getAuth();
-        sendPasswordResetEmail(auth, email.value)
-            .then(() => {
-                console.log(email.value);
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-            });
+        if (email.value === "" || !validateEmail(email.value)) {
+            return;
+        }
+
+        if (validateEmail(email.value)) {
+            const auth = getAuth();
+            sendPasswordResetEmail(auth, email.value)
+                .then(() => {
+                    console.log(email.value);
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                });
+        }
     };
 </script>
 
