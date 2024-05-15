@@ -115,8 +115,22 @@ export const useProductStore = defineStore("productStore", {
                 price: 79.99,
                 brand: "AthleticPro",
             },
+            {
+                id: "p8",
+                mainImage:
+                    "https://i.pinimg.com/564x/2f/d3/65/2fd365655040151d5bd16f0826afb6ff.jpg",
+                secondaryImages: [
+                    "https://i.pinimg.com/236x/89/1b/87/891b874e75c7c7de165d3c6758640ddd.jpg",
+                    "https://i.pinimg.com/236x/dd/a6/5f/dda65f3a4642b607d4eef2be2bc8e993.jpg",
+                    "https://i.pinimg.com/236x/1b/1b/2a/1b1b2a4c5367a683180a512615983239.jpg",
+                    "https://i.pinimg.com/236x/33/0c/ec/330cecf0a3c20fc9bb376edc1e686e31.jpg",
+                ],
+                title: "Google Pixel 7A",
+                description:
+                    "At a reduced cost, the best camera, good storage, good memory, solid battery and a smooth experience with the Google Pixel 7A",
+                price: 599.99,
+                brand: "AthleticPro",
+            },
         ],
     }),
-    getters: {},
-    actions: {},
 });

@@ -9,6 +9,8 @@ import SignupPage from "@/components/pages/SignupPage.vue";
 import ForgotPassword from "@/components/pages/ForgotPassword.vue";
 import CheckoutPage from "@/components/pages/CheckoutPage.vue";
 import FullCart from "@/components/pages/FullCart.vue";
+import ContactPage from "@/components/pages/ContactPage.vue";
+import UserProfile from "@/components/pages/UserProfile.vue";
 
 const routes = [
     {
@@ -74,6 +76,20 @@ const routes = [
         component: CheckoutPage,
         meta: {
             title: "Checkout",
+        },
+    },
+    {
+        path: "/contact",
+        component: ContactPage,
+        meta: {
+            title: "Contact",
+        },
+    },
+    {
+        path: "/profile",
+        component: UserProfile,
+        meta: {
+            title: "Profile",
         },
     },
 ];

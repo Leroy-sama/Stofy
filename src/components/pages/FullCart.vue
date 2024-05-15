@@ -3,7 +3,7 @@
         <div class="cart__wrapper">
             <h3 class="cart__head">Your Cart</h3>
             <div class="cont-sum">
-                <div class="cart__side">
+                <div class="cart__side" v-if="cartStore.items > 0">
                     <CartItem
                         v-for="item in cartStore.items"
                         :key="item.productId"
@@ -13,6 +13,14 @@
                         :price="item.price"
                         :qty="item.qty"
                     ></CartItem>
+                </div>
+                <div class="no-items" v-else>
+                    <p class="empty-cart">Your Cart is Empty</p>
+                    <div class="btn">
+                        <RouterLink class="continue" to="/products"
+                            >Continue Shopping</RouterLink
+                        >
+                    </div>
                 </div>
                 <div class="summary__side">
                     <h4 class="summary__head">Total Amount</h4>
@@ -150,6 +158,24 @@
 
     .sbt:hover {
         background-color: rgb(3, 63, 3);
+    }
+
+    .no-items {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        padding: 2em;
+    }
+
+    .empty-cart {
+        font-size: 2rem;
+    }
+
+    .continue {
+        border: 1px solid var(---darkGreenish);
+        padding: 0.5em 1em;
+        background-color: var(---darkGreenish);
+        color: #fff;
     }
 
     @media (min-width: 35em) {

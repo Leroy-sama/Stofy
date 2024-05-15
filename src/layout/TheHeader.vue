@@ -21,15 +21,40 @@
                 <li>
                     <a href="#">About</a>
                 </li>
+                <li>
+                    <RouterLink to="/contact">Contact</RouterLink>
+                </li>
             </ul>
             <div class="registerCart">
-                <RouterLink to="/signin" class="regis">
-                    <div v-if="user" class="user">LM</div>
+                <RouterLink :to="user ? '' : '/signin'" class="regis">
+                    <div v-if="user" class="user" @click="togglePopUp">
+                        {{ userStore.profileInitials }}
+                    </div>
                     <UserIcon v-else />
+                    <div v-if="showPopUp" class="popout">
+                        <p class="name">
+                            {{ userStore.profileFirstname }}
+                            {{ userStore.profileLastname }}
+                        </p>
+                        <p class="email">{{ userStore.profileEmail }}</p>
+                        <div class="popup__actions">
+                            <RouterLink
+                                class="profile-btn"
+                                to="/profile"
+                                @click="closePopUp"
+                                >Profile</RouterLink
+                            >
+                            <button class="logout-btn" @click="signOutUser">
+                                Logout
+                            </button>
+                        </div>
+                    </div>
                 </RouterLink>
                 <RouterLink to="/cart" class="cart-link">
                     <CartIcon />
-                    <span class="cart-count">{{ cartStore.qty }}</span>
+                    <span v-if="user" class="cart-count">{{
+                        cartStore.qty
+                    }}</span>
                 </RouterLink>
                 <!-- <div @click="toggleCart" class="cart" ref="carte">
                     <CartIcon class="icon-cart" />
@@ -67,15 +92,28 @@
     import DeleteIcon from "@/assets/icons/DeleteIcon.vue";
 
     import { computed, onMounted, reactive, ref } from "vue";
-    import { RouterLink } from "vue-router";
+    import { RouterLink, useRouter } from "vue-router";
     import { useCartStore } from "@/pinia/cartStore";
-    import { getAuth, onAuthStateChanged } from "firebase/auth";
+    import { useUserStore } from "@/pinia/userStore";
+    import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
     const cartStore = useCartStore();
+    const userStore = useUserStore();
+    const router = useRouter();
     const showCart = ref(null);
     const carte = ref(null);
 
     const user = ref(null);
+
+    const showPopUp = ref(false);
+
+    const togglePopUp = () => {
+        showPopUp.value = !showPopUp.value;
+    };
+
+    const closePopUp = () => {
+        showPopUp.value = false;
+    };
 
     const auth = getAuth();
     onMounted(() => {
@@ -92,6 +130,17 @@
             console.log("user is logged out");
         }
     });
+
+    const signOutUser = () => {
+        signOut(auth)
+            .then(() => {
+                console.log("Signed out successfully");
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        router.push("/home");
+    };
 
     const state = reactive({
         isActive: false,
@@ -127,6 +176,7 @@
         justify-content: space-between;
         align-items: center;
         padding: 1em;
+        background-color: white;
     }
 
     .logo {
@@ -138,7 +188,7 @@
 
     .logo:hover {
         color: #163020;
-        transform: scale(0.9) translateX(-2px);
+        transform: scale(0.9) translateX(-5px);
     }
 
     .cart-link {
@@ -302,6 +352,41 @@
         justify-content: center;
         align-items: center;
         border-radius: 50%;
+    }
+
+    .regis {
+        position: relative;
+    }
+
+    .popout {
+        color: white;
+        background-color: black;
+        max-width: 200px;
+        padding: 1em;
+        position: absolute;
+        top: 2.5em;
+        right: 1em;
+        z-index: 1;
+    }
+
+    .popup__actions {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1em;
+        margin-top: 1em;
+    }
+
+    .profile-btn,
+    .logout-btn {
+        background-color: white;
+        text-align: center;
+        padding: 0.4em;
+    }
+
+    .logout-btn {
+        border: none;
+        font-size: 1rem;
     }
 
     @media (min-width: 35em) {

@@ -223,8 +223,6 @@
                     emailAddress.val,
                     password.val
                 );
-                const { email, uid } = createUser.user;
-                userStore.addUser({ email, uid });
 
                 //firestore
                 const userData = {

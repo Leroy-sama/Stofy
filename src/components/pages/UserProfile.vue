@@ -8,6 +8,10 @@
                 </div>
                 <div class="user__details">
                     <div class="form-control">
+                        <input type="radio" />
+                        <input type="radio" />
+                    </div>
+                    <div class="form-control">
                         <label for="firstname">Firstname</label>
                         <input
                             type="text"
@@ -31,20 +35,35 @@
                             v-model.trim="email"
                         />
                     </div>
-                    <button class="btn">Save changes</button>
+                    <div class="form-control">
+                        <button class="btn">Save changes</button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 </template>
 
-<script setup></script>
+<script setup>
+    import { ref } from "vue";
+
+    const firstname = ref("");
+
+    const lastname = ref("");
+
+    const email = ref("");
+</script>
 
 <style scoped>
     .profile__wrapper {
         max-width: 1200px;
         margin-inline: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         padding: 2em 0;
+        /* border: 1px solid red; */
     }
 
     .profile__head {
@@ -54,16 +73,12 @@
     }
 
     .the__profile {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        /* border: 2px solid blue; */
+        padding: 2em;
+        background-color: #e4e4e4;
     }
 
     .user {
-        background-color: #163020;
-        color: #fff;
-        padding: 2em;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -71,6 +86,10 @@
 
     .user__initials {
         font-size: 2rem;
+        background-color: #163020;
+        color: #fff;
+        padding: 1.5em;
+        border-radius: 50%;
     }
 
     .form-control {
@@ -82,7 +101,11 @@
     }
 
     .form-control input {
-        width: 300px;
+        width: 100%;
+        max-width: 500px;
+        /* max-width: 100%; */
+        padding: 1em;
+        outline: none;
     }
 
     .btn {
@@ -91,5 +114,6 @@
         border: #163020;
         padding: 1em 2em;
         cursor: pointer;
+        width: 100%;
     }
 </style>

@@ -61,7 +61,8 @@
     }
 
     .padding {
-        padding: 1em;
+        padding: 1.5em;
+        padding-top: 1em;
     }
 
     .product__image img {
@@ -73,12 +74,13 @@
 
     .product__title {
         color: #163020;
-        padding: 1em 0;
+        padding: 0.5em 0;
+        font-size: 1.5rem;
     }
 
     .product__price {
         font-family: "Fraunces", serif;
-        font-size: 1.2rem;
+        /* font-size: 1.2rem; */
     }
 
     .product__action button {

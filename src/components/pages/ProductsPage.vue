@@ -2,8 +2,13 @@
     <section class="products">
         <div class="products__wrapper">
             <div class="head">
-                <span class="line"></span>
-                <h1 class="products__head">All Products</h1>
+                <div class="head__head">
+                    <span class="line"></span>
+                    <h1 class="products__head">All Products</h1>
+                </div>
+                <div class="filter">
+                    <h3>Filter:</h3>
+                </div>
             </div>
             <div class="search">
                 <div class="form__control">
@@ -42,7 +47,7 @@
         margin: 0 1em 3em;
     }
 
-    .head {
+    .head__head {
         display: flex;
         align-items: center;
         gap: 1em;
@@ -81,6 +86,12 @@
         outline: none;
     }
 
+    .head {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+    }
+
     @media (min-width: 35em) {
         .products__wrapper {
             max-width: 1200px;
@@ -90,6 +101,12 @@
         .productitems__wrapper {
             grid-template-columns: repeat(3, 1fr);
             gap: 2em;
+        }
+
+        .head {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
         }
     }
 </style>
