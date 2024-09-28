@@ -17,16 +17,22 @@
 	</section>
 </template>
 
-<script setup>
+<script setup lang="ts">
+	import { type Product, type ProductResponse } from "~~/types/types";
+
 	const { id } = useRoute().params;
 
 	console.log(id);
 
-	const { data: products, error } = await useFetch("/data.json");
+	const { data, error } = await useFetch<ProductResponse>("/data.json");
 
-	const product = products.find((product) => product.id === id);
+	const prodId = parseInt(id as string);
 
-	const showProdId = () => {
-		console.log(product.id);
-	};
+	const product = data.value?.products?.find(
+		(product: Product) => product.id === prodId
+	);
+
+	// const showProdId = () => {
+	// 	console.log(product.id);
+	// };
 </script>

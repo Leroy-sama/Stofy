@@ -2,19 +2,21 @@
 	<div class="container mx-auto">
 		<h1 class="text-3xl font-bold py-6">This is the Products page</h1>
 		<div class="grid gap-8 lg:grid-cols-3">
-			<div v-for="prod in data" :key="prod.id" class="grid gap-6">
+			<div
+				v-for="prod in data?.products"
+				:key="prod.id"
+				class="grid gap-6"
+			>
 				<NuxtLink :to="`/products/${prod.id}`">
-					<NuxtImg
-						:src="prod.image"
+					<img
+						:src="prod.images[0]"
 						alt=""
-						format="webp"
-						densities="x1"
 						class="w-full aspect-[4/3] object-cover"
 					/>
 				</NuxtLink>
 				<div class="grid gap-4">
 					<NuxtLink :to="`/products/${prod.id}`">
-						<h2 class="font-semibold text-xl">{{ prod.name }}</h2>
+						<h2 class="font-semibold text-xl">{{ prod.title }}</h2>
 					</NuxtLink>
 					<span>${{ prod.price }}</span>
 					<button
@@ -28,6 +30,10 @@
 	</div>
 </template>
 
-<script setup>
-	const { data, error } = await useFetch("/data.json");
+<script setup lang="ts">
+	import type { ProductResponse } from "~~/types/types";
+
+	const { data, error } = await useFetch<ProductResponse>(
+		"https://dummyjson.com/products"
+	);
 </script>
