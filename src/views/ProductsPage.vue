@@ -1,0 +1,52 @@
+<script setup lang="ts">
+	interface Product {
+		id: Number;
+		title: String;
+		description: String;
+		price: Number;
+	}
+	import BlogItem from "@/components/items/BlogItem.vue";
+	import { onMounted, ref } from "vue";
+
+	const products = ref<Product[]>([]);
+	const APIURL = "https://dummyjson.com/products";
+
+	const fetchProducts = async () => {
+		const response = await fetch(APIURL);
+		const data = await response.json();
+		products.value = data.products;
+		console.log(products.value);
+	};
+
+	onMounted(() => {
+		fetchProducts();
+	});
+</script>
+
+<template>
+	<main>
+		<section class="products">
+			<div class="wrapper">
+				<h1 class="products__head">The Products Page</h1>
+				<p class="products__text">Find all our products here</p>
+				<div class="products__grid">
+					<BlogItem />
+					<BlogItem />
+					<BlogItem />
+				</div>
+			</div>
+		</section>
+	</main>
+</template>
+
+<style lang="css" scoped>
+	.products__head {
+		font-size: 2rem;
+	}
+
+	.products__grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 1.5rem;
+	}
+</style>
