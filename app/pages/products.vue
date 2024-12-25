@@ -1,15 +1,17 @@
 <template>
 	<div class="container mx-auto">
 		<h1 class="text-3xl font-bold py-6">This is the Products page</h1>
-		<div class="grid gap-8 lg:grid-cols-3">
+		<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 			<div
 				v-for="prod in data?.products"
 				:key="prod.id"
 				class="grid gap-6"
 			>
 				<NuxtLink :to="`/products/${prod.id}`">
-					<img
+					<NuxtImg
 						:src="prod.images[0]"
+						format="webp"
+						densities="x1"
 						alt=""
 						class="w-full aspect-[4/3] object-cover"
 					/>
