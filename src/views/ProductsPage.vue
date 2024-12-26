@@ -1,9 +1,11 @@
 <script setup lang="ts">
 	interface Product {
-		id: Number;
-		title: String;
-		description: String;
-		price: Number;
+		id: number;
+		title: string;
+		description: string;
+		price: number;
+		images: string[];
+		category: string;
 	}
 	import BlogItem from "@/components/items/BlogItem.vue";
 	import { onMounted, ref } from "vue";
