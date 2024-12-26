@@ -1,11 +1,20 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+	const props = defineProps([
+		"prodID",
+		"prodImage",
+		"prodTitle",
+		"prodPrice",
+		"prodCategory",
+	]);
+</script>
 
 <template>
 	<div class="product">
-		<img src="@/assets/images/bag_main.webp" alt="" />
+		<img class="prod__img" :src="prodImage" :alt="prodTitle" />
 		<div class="product__details">
-			<h3 class="product__name">ManUnited Backpack</h3>
-			<span class="product__price">$25.00</span>
+			<p class="product__brand">{{ prodCategory }}</p>
+			<h3 class="product__name">{{ prodTitle }}</h3>
+			<span class="product__price">${{ prodPrice }}</span>
 		</div>
 	</div>
 </template>
@@ -14,6 +23,17 @@
 	.product {
 		display: grid;
 		gap: 1rem;
+	}
+
+	.prod__img {
+		border: 1px solid var(--clr-lightGrey);
+		aspect-ratio: 4/3;
+		object-fit: cover;
+	}
+
+	.product__brand {
+		font-size: 0.7rem;
+		text-transform: uppercase;
 	}
 
 	.product__name {

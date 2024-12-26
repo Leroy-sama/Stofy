@@ -30,9 +30,15 @@
 				<h1 class="products__head">The Products Page</h1>
 				<p class="products__text">Find all our products here</p>
 				<div class="products__grid">
-					<BlogItem />
-					<BlogItem />
-					<BlogItem />
+					<BlogItem
+						v-for="prod in products"
+						:key="prod.id"
+						:prodID="prod.id"
+						:prodImage="prod.images[0]"
+						:prodTitle="prod.title"
+						:prodPrice="prod.price"
+						:prodCategory="prod.category"
+					/>
 				</div>
 			</div>
 		</section>
