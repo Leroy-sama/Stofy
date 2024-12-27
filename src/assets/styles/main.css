@@ -11,6 +11,7 @@
 	--clr-darkGreen: #041a04;
 	--clr-white: #fff;
 	--clr-lightGrey: #ccc;
+	--clr-offWhite: #e0e0e0;
 }
 
 *,
@@ -26,6 +27,7 @@
 
 body {
 	font-family: var(--ff-primary);
+	min-height: 100vh;
 }
 
 h1,
