@@ -48,6 +48,10 @@
 </template>
 
 <style lang="css" scoped>
+	.products {
+		padding: 1.5rem 0;
+	}
+
 	.products__head {
 		font-size: 2rem;
 	}
@@ -56,5 +60,6 @@
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 		gap: 1.5rem;
+		padding: 1rem 0;
 	}
 </style>

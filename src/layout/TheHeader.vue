@@ -116,6 +116,11 @@
 			flex-direction: row;
 			padding: 0;
 			background-color: var(--clr-white);
+			transform: translateY(0);
+		}
+
+		.burger {
+			display: none;
 		}
 	}
 </style>

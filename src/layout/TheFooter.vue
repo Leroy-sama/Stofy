@@ -56,6 +56,7 @@
 	footer {
 		background-color: var(--clr-darkGreen);
 		padding: 2rem 0;
+		margin-top: 2rem;
 	}
 
 	.small-text {

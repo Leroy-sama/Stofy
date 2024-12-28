@@ -47,11 +47,13 @@
 			<div class="details__wrap">
 				<section class="details__images">
 					<img class="main-image" :src="product?.images[0]" alt="" />
-					<div
-						class="details__images-others"
-						v-for="image in product?.images"
-					>
-						<img :src="image" alt="" />
+
+					<div class="details__images-others">
+						<img
+							v-for="image in product?.images"
+							:src="image"
+							alt=""
+						/>
 					</div>
 				</section>
 				<section class="details__description">
@@ -83,7 +85,7 @@
 <style lang="css" scoped>
 	.details__wrap {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
+		padding: 2rem 0;
 		gap: 4rem;
 	}
 
@@ -105,6 +107,7 @@
 
 	.details__images-others img {
 		max-width: 100px;
+		border: 1px solid var(--clr-lightGrey);
 	}
 
 	.details__description {
@@ -150,8 +153,9 @@
 
 	.shopping {
 		display: flex;
-		justify-content: space-between;
-		align-items: center;
+		flex-direction: column;
+		gap: 1rem;
+		align-items: flex-start;
 	}
 
 	.shopping button {
@@ -160,7 +164,7 @@
 		gap: 0.5rem;
 		border: 1px solid var(--clr-darkGreen);
 		background-color: var(--clr-white);
-		padding: 0.75rem 2rem;
+		padding: 0.5rem 1.5rem;
 		cursor: pointer;
 		transition: 0.2s ease-in;
 	}
@@ -168,5 +172,17 @@
 	.shopping button:hover {
 		background-color: var(--clr-darkGreen);
 		color: var(--clr-white);
+	}
+
+	@media (min-width: 1024px) {
+		.details__wrap {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.shopping {
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+		}
 	}
 </style>
