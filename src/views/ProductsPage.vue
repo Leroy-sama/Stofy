@@ -4,7 +4,7 @@
 		title: string;
 		description: string;
 		price: number;
-		images: string[];
+		image: string;
 		category: string;
 	}
 	import BlogItem from "@/components/items/BlogItem.vue";
@@ -14,9 +14,9 @@
 	const APIURL = "https://dummyjson.com/products";
 
 	const fetchProducts = async () => {
-		const response = await fetch(APIURL);
+		const response = await fetch("/data.json");
 		const data = await response.json();
-		products.value = data.products;
+		products.value = data;
 		console.log(products.value);
 	};
 
@@ -36,7 +36,7 @@
 						v-for="prod in products"
 						:key="prod.id"
 						:prodID="prod.id"
-						:prodImage="prod.images[0]"
+						:prodImage="prod.image"
 						:prodTitle="prod.title"
 						:prodPrice="prod.price"
 						:prodCategory="prod.category"

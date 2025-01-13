@@ -31,7 +31,7 @@
 
 	.prod__img {
 		border: 1px solid var(--clr-lightGrey);
-		aspect-ratio: 4/3;
+		aspect-ratio: 1/1;
 		object-fit: cover;
 	}
 
